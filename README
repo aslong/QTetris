@@ -1,0 +1,17 @@
+QTetrisWindow -> holds the whole game.
+
+TetrisGrid -> handles the blocks and game logic for tetris game.
+
+Block -> A block to represent a tile in the game.
+
+
+Game logic:
+
+As time ticks down. A block is released from the top of the scene and it begins
+to fall toward the bottom of the scene. The block can be rotated by 90 degrees by
+the player to allow it to fit between other blocks. As blocks fall down the goal
+is to completely fill a horizontal row of blocks. This will elimate the row, shift
+all blocks above, down one. When the rows of blocks go higher than a set limit,
+the game is over and you lose. If the user is able to play through a set number
+of fallen blocks without going over the vertical limit, they move on to the next
+level.
