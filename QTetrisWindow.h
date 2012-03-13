@@ -1,4 +1,5 @@
 #include <QtGui>
+#include "TetrisScene.h"
 #include "TetrisGrid.h"
 
 class QTetrisWindow : public QMainWindow
@@ -11,7 +12,7 @@ class QTetrisWindow : public QMainWindow
     private slots:
         void quit();
     private:
-        QGraphicsScene *graphicsScene;
+        TetrisScene *graphicsScene;
         QGraphicsView *graphicsView;
         TetrisGrid *gameGrid;
 };

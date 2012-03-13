@@ -9,9 +9,11 @@ INCLUDEPATH += .
 
 # Input
 HEADERS = TetrisGrid.h \
+          TetrisScene.h \
           QTetrisWindow.h \
           Block.h 
 SOURCES = TetrisGrid.cpp \
+          TetrisScene.cpp \
           QTetrisWindow.cpp \
           Block.cpp \ 
           main.cpp

@@ -1,40 +1,47 @@
 #include "TetrisGrid.h"
+#include "Block.h"
+#include <stdlib.h>
 
 TetrisGrid::TetrisGrid(QGraphicsScene *scene)
 {
     gameScene = scene;
-}
-
-QRectF TetrisGrid::boundingRect() const
-{
-    return QRectF(0, 0, 320, 480);
-}
-
-void TetrisGrid::play()
-{
-    QTimeLine *timer = new QTimeLine(5000);
-    timer->setFrameRange(0, 100);
-    timer->setCurveShape(QTimeLine::LinearCurve);
-
-    QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
-    QGraphicsRectItem *rect = gameScene->addRect(QRectF(0, 0, 10, 10));
-    animation->setItem(rect);
-    animation->setTimeLine(timer);
-
-     for (int i = 0; i < 480; ++i)
-      animation->setPosAt(i/480.0, QPointF(0,i));
-
-    timer->start();
-}
-
-void TetrisGrid::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-                        QWidget *widget)
-{
     QPen pen;
     pen.setWidth(3);
     pen.setBrush(Qt::blue);
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
-    painter->setPen(pen);
-    painter->drawRect(0, 0, 320, 480);
+    gameBorder = gameScene->addRect(QRectF(0, 0, 320, 480), pen);
+}
+
+void TetrisGrid::play()
+{
+    Block *block = new Block(QPointF(5,6));
+    Block *block2 = new Block(QPointF(18,9));
+    gameScene->addItem(block);
+    gameScene->addItem(block2);
+    block->drop();
+    block2->drop();
+
+    timer = new QTimeLine();
+    timer->setFrameRange(0, 60);
+    timer->setCurveShape(QTimeLine::LinearCurve);
+        
+    QObject::connect(timer, SIGNAL(finished()), this, SLOT(restartTimer()));
+    QObject::connect(timer, SIGNAL(frameChanged(int)), this, SLOT(gameLoop(int)));
+    timer->setCurveShape(QTimeLine::LinearCurve);
+    timer->start();
+}
+
+void TetrisGrid::gameLoop(int step)
+{
+    if (step % 60) {
+        Block *blockTemp = new Block(QPointF((rand() % 150), 6));
+        gameScene->addItem(blockTemp);
+        blockTemp->drop();
+    }
+}
+
+void TetrisGrid::restartTimer()
+{
+    timer->start();
 }
