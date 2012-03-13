@@ -19,16 +19,31 @@ void Block::paint(QPainter *painter,
 
 void Block::drop()
 {
-    QTimeLine *timer = new QTimeLine(15000);
-    timer->setFrameRange(0, 100);
+    timer = new QTimeLine(15000);
+    timer->setFrameRange(0, 1);
     timer->setCurveShape(QTimeLine::LinearCurve);
 
-    QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
+    animation = new QGraphicsItemAnimation;
     animation->setItem(this);
     animation->setTimeLine(timer);
 
-     for (int i = 0; i < 220; ++i)
-      animation->setPosAt(i/480.0, QPointF(x(), y() + i));
+    animation->setPosAt(1, QPointF(x(), 200));
 
     timer->start();
 }
+
+void Block::moveRight(int spaces)
+{
+
+    timer->setPaused(true);
+    setX(x() + spaces);
+    drop();
+}
+
+void Block::moveLeft(int spaces)
+{
+    timer->setPaused(true);
+    setX(x() - spaces);
+    drop();
+}
+

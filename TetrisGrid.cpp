@@ -1,6 +1,7 @@
 #include "TetrisGrid.h"
 #include "Block.h"
 #include <stdlib.h>
+#include <iostream>
 
 TetrisGrid::TetrisGrid(QGraphicsScene *scene)
 {
@@ -15,33 +16,49 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene)
 
 void TetrisGrid::play()
 {
-    Block *block = new Block(QPointF(5,6));
-    Block *block2 = new Block(QPointF(18,9));
-    gameScene->addItem(block);
-    gameScene->addItem(block2);
-    block->drop();
-    block2->drop();
+    currentBlock = new Block(QPointF(5,6));
+    gameScene->addItem(currentBlock);
+    currentBlock->drop();
 
     timer = new QTimeLine();
     timer->setFrameRange(0, 60);
     timer->setCurveShape(QTimeLine::LinearCurve);
+
+    dropBlockTimer = new QTimeLine(5000);
+    dropBlockTimer->setFrameRange(0, 100);
+    dropBlockTimer->setCurveShape(QTimeLine::LinearCurve);
         
     QObject::connect(timer, SIGNAL(finished()), this, SLOT(restartTimer()));
     QObject::connect(timer, SIGNAL(frameChanged(int)), this, SLOT(gameLoop(int)));
-    timer->setCurveShape(QTimeLine::LinearCurve);
+    QObject::connect(dropBlockTimer, SIGNAL(finished()), this, SLOT(dropBlock()));
     timer->start();
+    dropBlockTimer->start();
+}
+void TetrisGrid::dropBlock()
+{
+    currentBlock = new Block(QPointF((rand() % 150), 6));
+    gameScene->addItem(currentBlock);
+    currentBlock->drop();
+    dropBlockTimer->start();
 }
 
 void TetrisGrid::gameLoop(int step)
 {
-    if (step % 60) {
-        Block *blockTemp = new Block(QPointF((rand() % 150), 6));
-        gameScene->addItem(blockTemp);
-        blockTemp->drop();
-    }
 }
 
 void TetrisGrid::restartTimer()
 {
     timer->start();
+}
+
+void TetrisGrid::leftKeyPressed()
+{
+    std::cout << "Left Press from grid\n";
+    currentBlock->moveLeft(1);
+}
+
+void TetrisGrid::rightKeyPressed()
+{
+    std::cout << "Right Press from grid\n";
+    currentBlock->moveRight(1);
 }
