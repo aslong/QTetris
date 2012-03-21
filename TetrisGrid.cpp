@@ -1,22 +1,24 @@
 #include "TetrisGrid.h"
-#include "Block.h"
 #include <stdlib.h>
 #include <iostream>
+#include "LineBlock.h"
 
 TetrisGrid::TetrisGrid(QGraphicsScene *scene)
 {
     gameScene = scene;
     QPen pen;
-    pen.setWidth(3);
+    pen.setWidth(1);
     pen.setBrush(Qt::blue);
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
-    gameBorder = gameScene->addRect(QRectF(0, 0, 320, 480), pen);
+    gameBorder = new GameBorder();
+    gameScene->addItem(gameBorder);
+        //gameScene->addRect(QRectF(0, 0, 320, 480));
 }
 
 void TetrisGrid::play()
 {
-    currentBlock = new Block(QPointF(5,6));
+    currentBlock = new LineBlock(QPointF(5,6));
     gameScene->addItem(currentBlock);
     currentBlock->drop();
 
@@ -32,7 +34,7 @@ void TetrisGrid::play()
     QObject::connect(timer, SIGNAL(frameChanged(int)), this, SLOT(gameLoop(int)));
     QObject::connect(dropBlockTimer, SIGNAL(finished()), this, SLOT(dropBlock()));
     timer->start();
-    dropBlockTimer->start();
+    //dropBlockTimer->start();
 }
 void TetrisGrid::dropBlock()
 {
@@ -44,6 +46,14 @@ void TetrisGrid::dropBlock()
 
 void TetrisGrid::gameLoop(int step)
 {
+    if (this->blockWithinGameBorder(currentBlock)) {
+        std::cout << "Contained in border\n";
+    }
+}
+
+bool TetrisGrid::blockWithinGameBorder(Block *block) 
+{
+    return currentBlock->collidesWithItem(gameBorder, Qt::ContainsItemShape);
 }
 
 void TetrisGrid::restartTimer()
@@ -55,10 +65,18 @@ void TetrisGrid::leftKeyPressed()
 {
     std::cout << "Left Press from grid\n";
     currentBlock->moveLeft(1);
+    if (!blockWithinGameBorder(currentBlock))
+    {
+        currentBlock->moveRight(1);
+    }
 }
 
 void TetrisGrid::rightKeyPressed()
 {
     std::cout << "Right Press from grid\n";
     currentBlock->moveRight(1);
+    if (!blockWithinGameBorder(currentBlock))
+    {
+        currentBlock->moveLeft(1);
+    }
 }

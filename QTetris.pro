@@ -11,9 +11,13 @@ INCLUDEPATH += .
 HEADERS = TetrisGrid.h \
           TetrisScene.h \
           QTetrisWindow.h \
-          Block.h 
+          Block.h \
+          LineBlock.h \
+          GameBorder.h
 SOURCES = TetrisGrid.cpp \
           TetrisScene.cpp \
           QTetrisWindow.cpp \
           Block.cpp \ 
+          LineBlock.cpp \
+          GameBorder.cpp \
           main.cpp

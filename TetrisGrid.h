@@ -1,5 +1,6 @@
 #include <QtGui>
 #include "Block.h"
+#include "GameBorder.h"
 
 #ifndef TETRIS_GRID
 #define TETRIS_GRID
@@ -11,6 +12,7 @@ class TetrisGrid : public QObject
         TetrisGrid(QGraphicsScene *scene);
         QRectF boundingRect() const;
         void play();
+        bool blockWithinGameBorder(Block *block);
         void leftKeyPressed();
         void rightKeyPressed();
     public slots:
@@ -19,7 +21,7 @@ class TetrisGrid : public QObject
         void restartTimer();
     private:
         QGraphicsScene *gameScene;
-        QGraphicsRectItem *gameBorder;
+        GameBorder *gameBorder;
         QTimeLine *timer;
         QTimeLine *dropBlockTimer;
         Block *currentBlock;

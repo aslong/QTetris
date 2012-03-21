@@ -7,14 +7,14 @@ Block::Block(const QPointF startPosition)
 
 QRectF Block::boundingRect() const
 {
-    return QRectF(x(), y(), 10, 10);
+    return QRectF(x(), y(), BLOCK_SIZE, BLOCK_SIZE);
 }
 
 void Block::paint(QPainter *painter, 
                 const QStyleOptionGraphicsItem *option,
                 QWidget *widget)
 {
-    painter->drawRect(x(),y(), 10, 10);
+    painter->drawRect(x(),y(), BLOCK_SIZE, BLOCK_SIZE);
 }
 
 void Block::drop()
@@ -29,7 +29,7 @@ void Block::drop()
 
     animation->setPosAt(1, QPointF(x(), 200));
 
-    timer->start();
+    //timer->start();
 }
 
 void Block::moveRight(int spaces)

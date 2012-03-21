@@ -2,7 +2,7 @@
 
 #ifndef BLOCK
 #define BLOCK
-class Block : public QGraphicsRectItem
+class Block : public QGraphicsItem
 {
     public:
         Block(const QPointF startPosition);
@@ -14,5 +14,7 @@ class Block : public QGraphicsRectItem
     private:
         QTimeLine *timer;
         QGraphicsItemAnimation *animation;
+    protected:
+        static const int BLOCK_SIZE = 10;
 };
 #endif
