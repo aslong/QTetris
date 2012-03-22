@@ -20,4 +20,9 @@ void TetrisScene::keyPressEvent(QKeyEvent *keyEvent)
         gameGrid->rightKeyPressed();
     }
 
+    if (keyEvent->key() == Qt::Key_Down)
+    {
+        gameGrid->downKeyPressed();
+    }
+
 }

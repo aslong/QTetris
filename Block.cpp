@@ -47,3 +47,16 @@ void Block::moveLeft(int spaces)
     drop();
 }
 
+void Block::moveUp(int spaces)
+{
+    timer->setPaused(true);
+    setY(y() - spaces);
+    drop();
+}
+
+void Block::moveDown(int spaces)
+{
+    timer->setPaused(true);
+    setY(y() + spaces);
+    drop();
+}

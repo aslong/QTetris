@@ -80,3 +80,14 @@ void TetrisGrid::rightKeyPressed()
         currentBlock->moveLeft(1);
     }
 }
+
+void TetrisGrid::downKeyPressed()
+{
+    std::cout << "Down Press from grid\n";
+    if (!blockWithinGameBorder(currentBlock))
+    {
+        currentBlock->moveUp(1);
+    }
+    currentBlock->moveDown(1);
+
+}

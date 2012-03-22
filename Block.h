@@ -11,6 +11,8 @@ class Block : public QGraphicsItem
         void drop();
         void moveLeft(int spaces);
         void moveRight(int spaces);
+        void moveUp(int spaces);
+        void moveDown(int spaces);
     private:
         QTimeLine *timer;
         QGraphicsItemAnimation *animation;

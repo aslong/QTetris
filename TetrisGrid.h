@@ -15,6 +15,7 @@ class TetrisGrid : public QObject
         bool blockWithinGameBorder(Block *block);
         void leftKeyPressed();
         void rightKeyPressed();
+        void downKeyPressed();
     public slots:
         void dropBlock();
         void gameLoop(int step);
