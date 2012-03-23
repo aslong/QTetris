@@ -22,6 +22,7 @@ class TetrisGrid : public QObject
     private:
         QGraphicsScene *gameScene;
         GameBorder *gameBorder;
+        QGraphicsLineItem *maxHeightBorder;
         QTimeLine *timer;
         QTimeLine *dropBlockTimer;
         Block *currentBlock;

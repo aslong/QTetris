@@ -13,6 +13,7 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene)
     pen.setJoinStyle(Qt::RoundJoin);
     gameBorder = new GameBorder();
     gameScene->addItem(gameBorder);
+    maxHeightBorder = gameScene->addLine(0, 300, gameBorder->boundingRect().width(), 300);
 }
 
 void TetrisGrid::play()
@@ -42,8 +43,17 @@ void TetrisGrid::gameLoop(int step)
     }
     else
     {
-        std::cout << "Replacing currentBlock. Not within gameBorder\n";
-        dropNewBlock();
+        currentBlock->moveUp(1);
+        if (currentBlock->collidesWithItem(maxHeightBorder, Qt::IntersectsItemShape))
+        {
+            std::cout << "Game Over!\n";
+            timer->setPaused(true);
+        }
+        else
+        {
+            std::cout << "Replacing currentBlock. Not within gameBorder\n";
+            dropNewBlock();
+        }
     }
 }
 
@@ -54,12 +64,22 @@ void TetrisGrid::restartTimer()
 
 void TetrisGrid::dropNewBlock()
 {
-    currentBlock = new LineBlock(QPointF((rand() % 150), 1));
+    currentBlock = new LineBlock(QPointF((rand() % 150), 6));
     gameScene->addItem(currentBlock);
 }
 
 bool TetrisGrid::blockWithinGameBorder(Block *block) 
 {
+    QList<QGraphicsItem *> items = gameScene->collidingItems(currentBlock);
+    QList<QGraphicsItem *>::iterator iter;
+    for (iter = items.begin(); iter != items.end(); iter++)
+    {
+        if ((*iter) != gameBorder && (*iter) != maxHeightBorder) 
+        {
+            return false;
+        }
+    }
+
     return currentBlock->collidesWithItem(gameBorder, Qt::ContainsItemShape);
 }
 
