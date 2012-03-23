@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "LineBlock.h"
+#include "LBlock.h"
 
 TetrisGrid::TetrisGrid(QGraphicsScene *scene)
 {
@@ -64,7 +65,8 @@ void TetrisGrid::restartTimer()
 
 void TetrisGrid::dropNewBlock()
 {
-    currentBlock = new LineBlock(QPointF((rand() % 150), 6));
+    //currentBlock = new LineBlock(QPointF((rand() % 150), 6));
+    currentBlock = new LBlock(QPointF((rand() % 150), 6));
     gameScene->addItem(currentBlock);
 }
 

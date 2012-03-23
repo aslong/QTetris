@@ -13,11 +13,13 @@ HEADERS = TetrisGrid.h \
           QTetrisWindow.h \
           Block.h \
           LineBlock.h \
+          LBlock.h \
           GameBorder.h
 SOURCES = TetrisGrid.cpp \
           TetrisScene.cpp \
           QTetrisWindow.cpp \
           Block.cpp \ 
           LineBlock.cpp \
+          LBlock.cpp \
           GameBorder.cpp \
           main.cpp
