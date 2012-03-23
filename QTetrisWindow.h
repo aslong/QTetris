@@ -9,6 +9,8 @@ class QTetrisWindow : public QMainWindow
     public :
         QTetrisWindow();
         void start();
+        static int const HORIZONTAL_SPACES = 10;
+        static int const VERTICAL_SPACES = 20;
     private slots:
         void quit();
     private:

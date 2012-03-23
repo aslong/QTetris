@@ -32,23 +32,13 @@ QPainterPath LBlock::shape() const
 
     if (rotateBlock)
     {
-        path.moveTo(x(), y());
-        path.lineTo(x(), y() + BLOCK_WIDTH);
-        path.lineTo(x() + BLOCK_HEIGHT, y() + BLOCK_WIDTH);
-        path.lineTo(x() + BLOCK_HEIGHT, y() + BLOCK_SIZE * 2);
-        path.lineTo(x() + BLOCK_SIZE, y() + BLOCK_SIZE * 2);
-        path.lineTo(x() + BLOCK_SIZE, y());
-        path.lineTo(x(), y());
+        path.addRect(x(), y(), BLOCK_SIZE - 1, BLOCK_WIDTH);
+        path.addRect(x() + BLOCK_SIZE + 1, 1 + y() + (BLOCK_SIZE * 2), BLOCK_SIZE - 1, BLOCK_SIZE - 1);
     }
     else
     {
-        path.moveTo(x() + BLOCK_SIZE * 2, y());
-        path.lineTo(x() + BLOCK_WIDTH, y());
-        path.lineTo(x() + BLOCK_WIDTH, y() + BLOCK_HEIGHT);
-        path.lineTo(x(), y() + BLOCK_HEIGHT);
-        path.lineTo(x(), y() + BLOCK_SIZE);
-        path.lineTo(x() + BLOCK_SIZE * 2, y() + BLOCK_SIZE);
-        path.lineTo(x() + BLOCK_SIZE * 2, y());
+        path.addRect(x() + (BLOCK_SIZE * 2) + 1, y(), BLOCK_SIZE - 1, BLOCK_SIZE);
+        path.addRect(x(), y() + BLOCK_SIZE + 1, BLOCK_WIDTH, BLOCK_SIZE - 1);
     }
     return path;
 }

@@ -1,18 +1,18 @@
 #include "QTetrisWindow.h"
-
+#include "Block.h"
 
 QTetrisWindow::QTetrisWindow()
 {
     setWindowTitle(tr("QTetris"));
     graphicsScene = new TetrisScene();
-    graphicsScene->setSceneRect(QRectF(0,0,320,480));
+    graphicsScene->setSceneRect(QRectF(0,0,305, 480));
     graphicsScene->setFocus(Qt::ActiveWindowFocusReason);
 
     gameGrid = new TetrisGrid(graphicsScene);
     graphicsScene->setGameGrid(gameGrid);
 
     graphicsView = new QGraphicsView(graphicsScene);
-    graphicsView->setSceneRect(QRectF(0, 0, 320, 480));
+    graphicsView->setSceneRect(QRectF(0, 0, 305, 480));
     graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     setCentralWidget(graphicsView);
     graphicsView->show();

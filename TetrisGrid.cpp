@@ -68,8 +68,15 @@ void TetrisGrid::dropNewBlock()
 {
     //currentBlock = new LineBlock(QPointF((rand() % 150), 6));
     //currentBlock = new LBlock(QPointF((rand() % 150), 6));
-    currentBlock = blockFactory->nextShape(QPointF(rand() % 150, 6));
+    int horizontalSpaces = boundingRect().width() / HORIZONTAL_BLOCK_GRID_SIZE;
+    int multiplier = rand() % horizontalSpaces;
+    currentBlock = blockFactory->nextShape(QPointF(1,1));
     gameScene->addItem(currentBlock);
+}
+
+QRectF TetrisGrid::boundingRect() const
+{
+    return gameBorder->boundingRect();
 }
 
 bool TetrisGrid::blockWithinGameBorder(Block *block) 
@@ -90,30 +97,30 @@ bool TetrisGrid::blockWithinGameBorder(Block *block)
 void TetrisGrid::leftKeyPressed()
 {
     std::cout << "Left Press from grid\n";
-    currentBlock->moveLeft(1);
+    currentBlock->moveLeft(HORIZONTAL_BLOCK_GRID_SIZE);
     if (!blockWithinGameBorder(currentBlock))
     {
-        currentBlock->moveRight(1);
+        currentBlock->moveRight(HORIZONTAL_BLOCK_GRID_SIZE);
     }
 }
 
 void TetrisGrid::rightKeyPressed()
 {
     std::cout << "Right Press from grid\n";
-    currentBlock->moveRight(1);
+    currentBlock->moveRight(HORIZONTAL_BLOCK_GRID_SIZE);
     if (!blockWithinGameBorder(currentBlock))
     {
-        currentBlock->moveLeft(1);
+        currentBlock->moveLeft(HORIZONTAL_BLOCK_GRID_SIZE);
     }
 }
 
 void TetrisGrid::downKeyPressed()
 {
     std::cout << "Down Press from grid\n";
-    currentBlock->moveDown(1);
+    currentBlock->moveDown(VERTICAL_BLOCK_GRID_SIZE);
     if (!blockWithinGameBorder(currentBlock))
     {
-        currentBlock->moveUp(1);
+        currentBlock->moveUp(VERTICAL_BLOCK_GRID_SIZE);
     }
 
 }

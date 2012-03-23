@@ -10,7 +10,7 @@ class LineBlock : public Block
         QRectF boundingRect() const;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     private:
-        static const int BLOCK_WIDTH = 30;
-        static const int BLOCK_HEIGHT = 10;  
+        static const int BLOCK_WIDTH = (BLOCK_SIZE * 4);
+        static const int BLOCK_HEIGHT = BLOCK_SIZE;  
 };
 #endif

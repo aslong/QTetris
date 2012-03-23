@@ -13,11 +13,11 @@ class Block : public QGraphicsItem
         void moveUp(int spaces);
         void moveDown(int spaces);
         void rotate();
+        static const int BLOCK_SIZE = 20;
     private:
         QTimeLine *timer;
         QGraphicsItemAnimation *animation;
     protected:
-        static const int BLOCK_SIZE = 10;
         bool rotateBlock;
 };
 #endif

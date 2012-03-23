@@ -31,5 +31,7 @@ class TetrisGrid : public QObject
         bool blockWithinGameBorder(Block *block);
         void dropNewBlock();
         void setupGameLoop();
+        static const int HORIZONTAL_BLOCK_GRID_SIZE = (Block::BLOCK_SIZE / 2);
+        static const int VERTICAL_BLOCK_GRID_SIZE = (Block::BLOCK_SIZE / 2);
 };
 #endif
