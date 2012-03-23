@@ -3,6 +3,7 @@
 #include "Block.h"
 #include "LineBlock.h"
 #include "LBlock.h"
+#include "JBlock.h"
 
 BlockFactory::BlockFactory()
 {
@@ -10,7 +11,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
-    int random = rand() % 2; 
+    int random = rand() % 3; 
 
     switch (random)
     {
@@ -18,6 +19,8 @@ Block * BlockFactory::nextShape(QPointF point)
            return new LineBlock(point); 
         case LSHAPED:
            return new LBlock(point);
+        case JSHAPED:
+           return new JBlock(point);
         default:
            return new Block(point);
     }
