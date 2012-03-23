@@ -12,7 +12,7 @@ class Block : public QGraphicsItem
         void moveRight(int spaces);
         void moveUp(int spaces);
         void moveDown(int spaces);
-        void rotate();
+        virtual void rotate();
         static const int BLOCK_SIZE = 20;
     private:
         QTimeLine *timer;
