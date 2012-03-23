@@ -12,12 +12,11 @@ class TetrisGrid : public QObject
         TetrisGrid(QGraphicsScene *scene);
         QRectF boundingRect() const;
         void play();
-        bool blockWithinGameBorder(Block *block);
         void leftKeyPressed();
         void rightKeyPressed();
         void downKeyPressed();
+        void rotationKeyPressed();
     public slots:
-        void dropBlock();
         void gameLoop(int step);
         void restartTimer();
     private:
@@ -26,5 +25,8 @@ class TetrisGrid : public QObject
         QTimeLine *timer;
         QTimeLine *dropBlockTimer;
         Block *currentBlock;
+        bool blockWithinGameBorder(Block *block);
+        void dropNewBlock();
+        void setupGameLoop();
 };
 #endif
