@@ -1,6 +1,7 @@
 #include <QtGui>
 #include "Block.h"
 #include "GameBorder.h"
+#include "BlockFactory.h"
 
 #ifndef TETRIS_GRID
 #define TETRIS_GRID
@@ -25,6 +26,7 @@ class TetrisGrid : public QObject
         QGraphicsLineItem *maxHeightBorder;
         QTimeLine *timer;
         QTimeLine *dropBlockTimer;
+        BlockFactory *blockFactory;
         Block *currentBlock;
         bool blockWithinGameBorder(Block *block);
         void dropNewBlock();

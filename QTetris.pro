@@ -12,6 +12,7 @@ HEADERS = TetrisGrid.h \
           TetrisScene.h \
           QTetrisWindow.h \
           Block.h \
+          BlockFactory.h \
           LineBlock.h \
           LBlock.h \
           GameBorder.h
@@ -19,6 +20,7 @@ SOURCES = TetrisGrid.cpp \
           TetrisScene.cpp \
           QTetrisWindow.cpp \
           Block.cpp \ 
+          BlockFactory.cpp \
           LineBlock.cpp \
           LBlock.cpp \
           GameBorder.cpp \

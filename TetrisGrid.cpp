@@ -15,6 +15,7 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene)
     gameBorder = new GameBorder();
     gameScene->addItem(gameBorder);
     maxHeightBorder = gameScene->addLine(0, 300, gameBorder->boundingRect().width(), 300);
+    blockFactory = new BlockFactory();
 }
 
 void TetrisGrid::play()
@@ -66,7 +67,8 @@ void TetrisGrid::restartTimer()
 void TetrisGrid::dropNewBlock()
 {
     //currentBlock = new LineBlock(QPointF((rand() % 150), 6));
-    currentBlock = new LBlock(QPointF((rand() % 150), 6));
+    //currentBlock = new LBlock(QPointF((rand() % 150), 6));
+    currentBlock = blockFactory->nextShape(QPointF(rand() % 150, 6));
     gameScene->addItem(currentBlock);
 }
 
