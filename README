@@ -15,13 +15,3 @@ all blocks above, down one. When the rows of blocks go higher than a set limit,
 the game is over and you lose. If the user is able to play through a set number
 of fallen blocks without going over the vertical limit, they move on to the next
 level.
-
-Requirements:
-
-* Support standard set of tetris blocks
-* Filling row removes the row of blocks and moves other blocks down
-* Scoring for number of rows removed
-* Levels by score
-* Pause game
-* Show next block coming up
-* Colorize blocks
