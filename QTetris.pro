@@ -17,6 +17,7 @@ HEADERS = TetrisGrid.h \
           LBlock.h \
           JBlock.h \
           TBlock.h \
+          SquareBlock.h \
           GameBorder.h
 SOURCES = TetrisGrid.cpp \
           TetrisScene.cpp \
@@ -27,5 +28,6 @@ SOURCES = TetrisGrid.cpp \
           LBlock.cpp \
           JBlock.cpp \
           TBlock.cpp \
+          SquareBlock.cpp \
           GameBorder.cpp \
           main.cpp

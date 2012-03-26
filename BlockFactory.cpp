@@ -5,6 +5,7 @@
 #include "LBlock.h"
 #include "JBlock.h"
 #include "TBlock.h"
+#include "SquareBlock.h"
 
 BlockFactory::BlockFactory()
 {
@@ -12,7 +13,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
-    int random = rand() % 4; 
+    int random = rand() % 5; 
 
     switch (random)
     {
@@ -24,6 +25,8 @@ Block * BlockFactory::nextShape(QPointF point)
            return new JBlock(point);
         case TSHAPED:
            return new TBlock(point);
+        case SQUARESHAPED:
+           return new SquareBlock(point);
         default:
            return new Block(point);
     }
