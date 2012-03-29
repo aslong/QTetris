@@ -1,5 +1,7 @@
 #include "LineBlock.h"
 
+const QColor LineBlock::FILL_COLOR = Qt::cyan;
+
 LineBlock::LineBlock(QPointF point)
     :Block(point)
 {
@@ -23,6 +25,7 @@ void LineBlock::paint(QPainter *painter,
     int blockWidth = rotateBlock ? +BLOCK_HEIGHT : +BLOCK_WIDTH;
     int blockHeight = rotateBlock ? +BLOCK_WIDTH : +BLOCK_HEIGHT;
     painter->drawRect(x(),y(), blockWidth, blockHeight);
+    painter->fillRect(x() + 1,y() + 1, blockWidth - 2, blockHeight - 2, FILL_COLOR);
     for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
     {
         int newStartX = rotateBlock ? x() : x() + (BLOCK_SIZE * i);

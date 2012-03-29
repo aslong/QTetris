@@ -12,6 +12,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
+//    return new JBlock(point);
     int random = rand() % 4; 
 
     switch (random)

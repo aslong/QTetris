@@ -12,5 +12,6 @@ class LineBlock : public Block
     private:
         static const int BLOCK_WIDTH = (BLOCK_SIZE * 4);
         static const int BLOCK_HEIGHT = BLOCK_SIZE;  
+        static const QColor FILL_COLOR;
 };
 #endif

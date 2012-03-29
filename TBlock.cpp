@@ -19,6 +19,9 @@
  *         * *
  *           *
  * */
+
+const QColor TBlock::FILL_COLOR = Qt::yellow;
+
 TBlock::TBlock(QPointF point)
     :Block(point)
 {
@@ -72,6 +75,8 @@ void TBlock::paint(QPainter *painter,
     { 
         painter->drawRect(x() + BLOCK_SIZE, y(), BLOCK_SIZE, BLOCK_SIZE); 
         painter->drawRect(x(), y() + BLOCK_SIZE, BLOCK_WIDTH, BLOCK_SIZE);
+        painter->fillRect(x() + BLOCK_SIZE + 1, y() + 1, BLOCK_SIZE - 2, BLOCK_SIZE - 2, FILL_COLOR); 
+        painter->fillRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_WIDTH - 2, BLOCK_SIZE - 2, FILL_COLOR);
 
         for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
         {
@@ -86,6 +91,8 @@ void TBlock::paint(QPainter *painter,
     {
         painter->drawRect(x(), y(), BLOCK_SIZE, BLOCK_WIDTH); 
         painter->drawRect(x() + BLOCK_SIZE, y() + BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); 
+        painter->fillRect(x() + 1, y() + 1, BLOCK_SIZE - 2, BLOCK_WIDTH - 2, FILL_COLOR); 
+        painter->fillRect(x() + BLOCK_SIZE + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 2, BLOCK_SIZE - 2, FILL_COLOR); 
 
         for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
         {
@@ -100,6 +107,8 @@ void TBlock::paint(QPainter *painter,
     {
         painter->drawRect(x(), y(), BLOCK_WIDTH, BLOCK_SIZE); 
         painter->drawRect(x() + BLOCK_SIZE, y() + BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        painter->fillRect(x(), y(), BLOCK_WIDTH - 2, BLOCK_SIZE - 2, FILL_COLOR); 
+        painter->fillRect(x() + BLOCK_SIZE + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 2, BLOCK_SIZE - 2, FILL_COLOR);
         for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
         {
             int newStartX =  x() + (BLOCK_SIZE * i);
@@ -113,6 +122,8 @@ void TBlock::paint(QPainter *painter,
     {
         painter->drawRect(x() + BLOCK_SIZE, y(), BLOCK_SIZE, BLOCK_WIDTH); 
         painter->drawRect(x(), y() + BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); 
+        painter->fillRect(x() + BLOCK_SIZE + 1, y() + 1, BLOCK_SIZE - 2, BLOCK_WIDTH - 2, FILL_COLOR); 
+        painter->fillRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 2, BLOCK_SIZE - 2, FILL_COLOR); 
         for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
         {
             int newStartX = x() + BLOCK_SIZE;

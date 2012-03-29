@@ -13,5 +13,6 @@ class JBlock : public Block
     private:
         static const int BLOCK_WIDTH = (BLOCK_SIZE*3);
         static const int BLOCK_HEIGHT = (BLOCK_SIZE * 2);
+        static const QColor FILL_COLOR;
 };
 #endif

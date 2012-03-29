@@ -19,5 +19,6 @@ class Block : public QGraphicsItem
         QGraphicsItemAnimation *animation;
     protected:
         bool rotateBlock;
+        static const QColor FILL_COLOR;
 };
 #endif

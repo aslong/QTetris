@@ -15,5 +15,6 @@ class TBlock : public Block
         static const int BLOCK_WIDTH = (BLOCK_SIZE*3);
         static const int BLOCK_HEIGHT = (BLOCK_SIZE * 2);
         int angle;
+        static const QColor FILL_COLOR;
 };
 #endif
