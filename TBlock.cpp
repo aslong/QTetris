@@ -134,17 +134,3 @@ void TBlock::paint(QPainter *painter,
         }
     }
 }
-
-void TBlock::rotate()
-{
-    Block::rotate(); 
-    if (angle == 270) 
-    {
-        angle = 0;
-    }
-    else
-    {
-        angle += 90;
-    }
-    
-}

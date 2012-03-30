@@ -5,6 +5,7 @@ const QColor Block::FILL_COLOR = Qt::red;
 Block::Block(const QPointF startPosition)
 {
     setPos(startPosition);
+    angle = 0;
     rotateBlock = false;
 }
 
@@ -46,4 +47,12 @@ void Block::rotate()
 {
     prepareGeometryChange();
     rotateBlock = !rotateBlock;
+    if (angle == 270) 
+    {
+        angle = 0;
+    }
+    else
+    {
+        angle += 90;
+    }
 }
