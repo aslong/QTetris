@@ -19,3 +19,13 @@ level.
 Ideas:
 
 - With friends
+
+Requirements:
+
+* Support standard set of tetris blocks
+* Filling row removes the row of blocks and moves other blocks down
+* Scoring for number of rows removed
+* Levels by score
+* Pause game
+* Show next block coming up
+* Colorize blocks
