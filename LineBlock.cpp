@@ -10,7 +10,7 @@ LineBlock::LineBlock(QPointF point)
 
 QRectF LineBlock::boundingRect() const
 {
-    if (rotateBlock) 
+    if (angle == 90 || angle == 270) 
     {
         return (QRectF(x(), y(), BLOCK_HEIGHT, BLOCK_WIDTH));
     }
@@ -22,16 +22,18 @@ void LineBlock::paint(QPainter *painter,
                     const QStyleOptionGraphicsItem *option,
                     QWidget *widget)
 {
-    int blockWidth = rotateBlock ? +BLOCK_HEIGHT : +BLOCK_WIDTH;
-    int blockHeight = rotateBlock ? +BLOCK_WIDTH : +BLOCK_HEIGHT;
-    painter->drawRect(x(),y(), blockWidth, blockHeight);
-    painter->fillRect(x() + 1,y() + 1, blockWidth - 2, blockHeight - 2, FILL_COLOR);
-    for (int i = 1; i < BLOCK_WIDTH / BLOCK_SIZE; i++)
+    if (angle == 0 || angle == 180)
     {
-        int newStartX = rotateBlock ? x() : x() + (BLOCK_SIZE * i);
-        int newStartY = rotateBlock ? y() + (BLOCK_SIZE * i) : y();
-        int newEndX = rotateBlock ? x() + BLOCK_HEIGHT : x() + BLOCK_SIZE * i;
-        int newEndY = rotateBlock ? y() + BLOCK_SIZE * i : y() + BLOCK_HEIGHT;
-        painter->drawLine(newStartX, newStartY, newEndX, newEndY);
+        painter->drawRect(x(), y(), BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x() + BLOCK_SIZE, y(), BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x() + (BLOCK_SIZE * 2), y(), BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x() + (BLOCK_SIZE * 3), y(), BLOCK_SIZE, BLOCK_SIZE);
+    }
+    else
+    {
+        painter->drawRect(x(), y(), BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x(), y() + BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x(), y() + (BLOCK_SIZE * 2), BLOCK_SIZE, BLOCK_SIZE);
+        painter->drawRect(x(), y() + (BLOCK_SIZE * 3), BLOCK_SIZE, BLOCK_SIZE);
     }
 }
