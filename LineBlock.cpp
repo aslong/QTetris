@@ -28,6 +28,11 @@ void LineBlock::paint(QPainter *painter,
         painter->drawRect(x() + BLOCK_SIZE, y(), BLOCK_SIZE, BLOCK_SIZE);
         painter->drawRect(x() + (BLOCK_SIZE * 2), y(), BLOCK_SIZE, BLOCK_SIZE);
         painter->drawRect(x() + (BLOCK_SIZE * 3), y(), BLOCK_SIZE, BLOCK_SIZE);
+
+        painter->fillRect(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + BLOCK_SIZE + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + (BLOCK_SIZE * 2) + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + (BLOCK_SIZE * 3) + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
     }
     else
     {
@@ -35,5 +40,10 @@ void LineBlock::paint(QPainter *painter,
         painter->drawRect(x(), y() + BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         painter->drawRect(x(), y() + (BLOCK_SIZE * 2), BLOCK_SIZE, BLOCK_SIZE);
         painter->drawRect(x(), y() + (BLOCK_SIZE * 3), BLOCK_SIZE, BLOCK_SIZE);
+
+        painter->fillRect(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + 1, y() + (BLOCK_SIZE * 2) + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+        painter->fillRect(x() + 1, y() + (BLOCK_SIZE * 3) + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
     }
 }
