@@ -11,6 +11,8 @@
  *           *
  *
  * */
+const QColor SBlock::FILL_COLOR = Qt::lightGray;
+
 SBlock::SBlock(QPointF point)
     :Block(point)
 {
