@@ -9,6 +9,7 @@ INCLUDEPATH += .
 
 # Input
 HEADERS = TetrisGrid.h \
+          GridRows.h \
           TetrisScene.h \
           QTetrisWindow.h \
           Block.h \
@@ -22,6 +23,7 @@ HEADERS = TetrisGrid.h \
           ZBlock.h \
           GameBorder.h
 SOURCES = TetrisGrid.cpp \
+          GridRows.cpp \
           TetrisScene.cpp \
           QTetrisWindow.cpp \
           Block.cpp \ 
