@@ -9,7 +9,7 @@ SquareBlock::SquareBlock(QPointF point)
 
 QRectF SquareBlock::boundingRect() const
 {
-    return QRectF(x(), y(), BLOCK_WIDTH, BLOCK_HEIGHT);
+    return QRectF(x() + 1, y() + 1, BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1);
 }
 
 void SquareBlock::paint(QPainter *painter,

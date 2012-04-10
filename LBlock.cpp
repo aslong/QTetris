@@ -23,10 +23,10 @@ QRectF LBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
     {
-        return QRectF(x(), y(), BLOCK_HEIGHT, BLOCK_WIDTH);
+        return QRectF(x() + 1, y() + 1, BLOCK_HEIGHT - 1, BLOCK_WIDTH - 1);
     }
 
-    return QRectF(x(), y(), BLOCK_WIDTH, BLOCK_HEIGHT);
+    return QRectF(x() + 1, y() + 1, BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1);
 }
 
 QPainterPath LBlock::shape() const
@@ -35,31 +35,31 @@ QPainterPath LBlock::shape() const
 
     if (angle == 0)
     {
-        path.addRect(x() + (BLOCK_SIZE * 2) + 1, y(), BLOCK_SIZE - 1, BLOCK_SIZE);
-        path.addRect(x(), y() + BLOCK_SIZE + 1, BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x() + BLOCK_SIZE, y() + BLOCK_SIZE + 1, BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x() + (BLOCK_SIZE * 2), y() + BLOCK_SIZE + 1, BLOCK_SIZE, BLOCK_SIZE - 1);
+        path.addRect(x() + (BLOCK_SIZE * 2) + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + (BLOCK_SIZE * 2) + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
     }
     else if (angle == 90)
     {
-        path.addRect(x(), y(), BLOCK_SIZE - 1, BLOCK_SIZE);
-        path.addRect(x(), y() + BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE);
-        path.addRect(x(), y() + (BLOCK_SIZE * 2), BLOCK_SIZE - 1, BLOCK_SIZE - 1);
-        path.addRect(x() + BLOCK_SIZE, y() + (BLOCK_SIZE * 2) + 1, BLOCK_SIZE, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + (BLOCK_SIZE * 2) + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + (BLOCK_SIZE * 2) + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
     }
     else if (angle == 180)
     {
-        path.addRect(x(), y(), BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x() + BLOCK_SIZE, y(), BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x() + (BLOCK_SIZE * 2), y(), BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x(), y() + BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE);
+        path.addRect(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + (BLOCK_SIZE * 2) + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
     }
     else
     {
-        path.addRect(x(), y(), BLOCK_SIZE, BLOCK_SIZE - 1);
-        path.addRect(x() + BLOCK_SIZE + 1, y(), BLOCK_SIZE - 1, BLOCK_SIZE);
-        path.addRect(x() + BLOCK_SIZE + 1, y() + BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
-        path.addRect(x() + BLOCK_SIZE + 1, y() + (BLOCK_SIZE * 2), BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + BLOCK_SIZE + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        path.addRect(x() + BLOCK_SIZE + 1, y() + (BLOCK_SIZE * 2) + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
     }
     return path;
 }

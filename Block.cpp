@@ -11,7 +11,7 @@ Block::Block(const QPointF startPosition)
 
 QRectF Block::boundingRect() const
 {
-    return QRectF(x(), y(), BLOCK_SIZE, BLOCK_SIZE);
+    return QRectF(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
 }
 
 void Block::paint(QPainter *painter, 
@@ -19,7 +19,7 @@ void Block::paint(QPainter *painter,
                 QWidget *widget)
 {
     painter->drawRect(x(),y(), BLOCK_SIZE, BLOCK_SIZE);
-    painter->fillRect(x() + 1,y() + 1, BLOCK_SIZE + 2, BLOCK_SIZE + 2, FILL_COLOR);
+    painter->fillRect(x() + 1,y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
     
 }
 

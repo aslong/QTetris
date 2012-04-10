@@ -12,10 +12,10 @@ QRectF LineBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270) 
     {
-        return (QRectF(x(), y(), BLOCK_HEIGHT, BLOCK_WIDTH));
+        return (QRectF(x() + 1, y() + 1, BLOCK_HEIGHT - 1, BLOCK_WIDTH - 1));
     }
 
-    return (QRectF(x(), y(), BLOCK_WIDTH, BLOCK_HEIGHT));
+    return (QRectF(x() + 1, y() + 1, BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1));
 }
 
 void LineBlock::paint(QPainter *painter,
