@@ -8,7 +8,7 @@ void TetrisScene::setGameGrid(TetrisGrid *gameGridArg)
 
 void TetrisScene::keyPressEvent(QKeyEvent *keyEvent)
 {
-    std::cout << "Pressing key " << keyEvent->key() << "\n";
+//    std::cout << "Pressing key " << keyEvent->key() << "\n";
 
     if (keyEvent->key() == Qt::Key_Left)
     {
