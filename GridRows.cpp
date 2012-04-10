@@ -8,20 +8,24 @@ GridRows::GridRows(int fullRowCapacity)
 
 bool GridRows::addBlock(int row)
 {
-    QLinkedList<QLinkedList<bool> *>::iterator i = rows->begin();
-
-    while (i == rows->end())
+    if (rows->count() <= row)
     {
-        rows->push_back(new QLinkedList<bool>());
-        int currRow;
-        for (i = rows->begin(), currRow = 0; currRow < row && i != rows->end(); i++)
+        for (int i = rows->count(); i <= row; i++)
         {
-            currRow++;
+            rows->append(new QLinkedList<bool>());
         }
     }
 
-    **i << true;
+    QLinkedList<QLinkedList<bool> *>::iterator i = rows->begin();
+    int currRow = 0;
 
+    for (i = rows->begin(); currRow < row && i != rows->end(); i++)
+    {
+        currRow++;
+    }
+
+    **i << true;
+    
     return (*i)->count() == fullRowCount;
 }
 
