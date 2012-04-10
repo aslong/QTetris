@@ -2,6 +2,7 @@
 #include "Block.h"
 #include "GameBorder.h"
 #include "BlockFactory.h"
+#include "GridRows.h"
 
 #ifndef TETRIS_GRID
 #define TETRIS_GRID
@@ -11,6 +12,7 @@ class TetrisGrid : public QObject
 
     public:
         TetrisGrid(QGraphicsScene *scene);
+        GridRows *gridRows;
         QRectF boundingRect() const;
         void play();
         void leftKeyPressed();

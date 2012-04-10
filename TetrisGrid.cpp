@@ -16,6 +16,7 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene)
     gameScene->addItem(gameBorder);
     maxHeightBorder = gameScene->addLine(0, 300, gameBorder->boundingRect().width(), 300);
     blockFactory = new BlockFactory();
+    gridRows = new GridRows(gameBorder->boundingRect().width() / Block::BLOCK_SIZE);
 }
 
 void TetrisGrid::play()
@@ -39,11 +40,7 @@ void TetrisGrid::setupGameLoop()
 void TetrisGrid::gameLoop(int step)
 {
     currentBlock->moveDown(1);
-    if (this->blockWithinGameBorder(currentBlock)) 
-    {
-        std::cout << "Contained in border\n";
-    }
-    else
+    if (!this->blockWithinGameBorder(currentBlock)) 
     {
         currentBlock->moveUp(1);
         if (currentBlock->collidesWithItem(maxHeightBorder, Qt::IntersectsItemShape))
@@ -53,7 +50,17 @@ void TetrisGrid::gameLoop(int step)
         }
         else
         {
-            std::cout << "Replacing currentBlock. Not within gameBorder\n";
+            int rowPos = gameBorder->boundingRect().height() - currentBlock->mapToScene(currentBlock->boundingRect().bottomLeft()).y();
+            int row = (int)(rowPos / Block::BLOCK_SIZE);
+            for (int i = 0; i < currentBlock->numberRowsOfBlocks(); i++)
+            {
+                for (int j = 0; j < currentBlock->numberBlocksAtRow(i); j++)
+                {
+                    int filledRow = gridRows->addBlock(row + i);
+                    std::cout << "Row pos " << i << "x" << j << ": " << row << " row filled: " << filledRow << "\n";
+                }
+            }
+
             dropNewBlock();
         }
     }
