@@ -57,7 +57,7 @@ void TetrisGrid::gameLoop(int step)
                 for (int j = 0; j < currentBlock->numberBlocksAtRow(i); j++)
                 {
                     int filledRow = gridRows->addBlock(row + i);
-                    std::cout << "Row pos " << i << "x" << j << ": " << row << " row filled: " << filledRow << "\n";
+                    std::cout << "Row pos " << row + i << "x" << j << " -  row filled: " << filledRow << "\n";
                 }
             }
 
