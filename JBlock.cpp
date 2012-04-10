@@ -20,6 +20,68 @@ JBlock::JBlock(QPointF point)
 {
 }
 
+int JBlock::numberRowsOfBlocks()
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 2;
+    }
+    else 
+    {
+        return 3;
+    }
+}
+
+int JBlock::numberBlocksAtRow(int row)
+{
+    if (angle == 0)
+    {
+        if (row == 0)
+        {
+            return 3;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if (angle == 90)
+    {
+        if (row == 0 || row == 1)
+        {
+            return 1;
+        }
+        else if (row == 2)
+        {
+            return 2;
+        }
+    }
+    else if (angle == 180)
+    {
+        if (row == 0)
+        {
+            return 1;
+        }
+        else if (row == 1)
+        {
+            return 3;
+        }
+    }
+    else if (angle == 270)
+    {
+        if (row == 0)
+        {
+            return 2;
+        }
+        else if (row == 1 || row == 2)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 QRectF JBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
