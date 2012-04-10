@@ -9,6 +9,21 @@ Block::Block(const QPointF startPosition)
     rotateBlock = false;
 }
 
+int Block::numberRowsOfBlocks()
+{
+    return 1;
+}
+
+int Block::numberBlocksAtRow(int row)
+{
+    if (row == 0)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
 QRectF Block::boundingRect() const
 {
     return QRectF(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);

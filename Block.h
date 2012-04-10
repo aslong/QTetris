@@ -13,6 +13,8 @@ class Block : public QGraphicsItem
         void moveUp(int spaces);
         void moveDown(int spaces);
         virtual void rotate();
+        virtual int numberRowsOfBlocks();
+        virtual int numberBlocksAtRow(int row);
         static const int BLOCK_SIZE = 20;
     private:
         QTimeLine *timer;
