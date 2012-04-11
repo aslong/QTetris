@@ -7,6 +7,16 @@ SquareBlock::SquareBlock(QPointF point)
 {
 }
 
+int SquareBlock::numberRowsOfBlocks()
+{
+    return 2;
+}
+        
+int SquareBlock::numberBlocksAtRow(int row)
+{
+    return 2;
+}
+
 QRectF SquareBlock::boundingRect() const
 {
     return QRectF(x() + 1, y() + 1, BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1);
