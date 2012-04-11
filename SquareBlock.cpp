@@ -17,6 +17,24 @@ int SquareBlock::numberBlocksAtRow(int row)
     return 2;
 }
 
+QList<Block *> SquareBlock::getBlocksAtRow(int row)
+{
+    QList<Block *> rowOfBlocks;
+
+    if (row == 0)
+    {
+        rowOfBlocks << new Block(QPointF(x(), y() + BLOCK_SIZE / 2), FILL_COLOR);
+        rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y() + BLOCK_SIZE / 2), FILL_COLOR);
+    }
+    else
+    {
+        rowOfBlocks << new Block(QPointF(x(), y()), FILL_COLOR);
+        rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y()), FILL_COLOR);
+    }
+
+    return rowOfBlocks;
+}
+
 QRectF SquareBlock::boundingRect() const
 {
     return QRectF(x() + 1, y() + 1, BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1);
