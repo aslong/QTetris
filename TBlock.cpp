@@ -28,6 +28,55 @@ TBlock::TBlock(QPointF point)
     angle = 0;
 }
 
+int TBlock::numberRowsOfBlocks()
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 2;
+    }
+    else
+    {
+        return 3;
+    }
+}
+
+int TBlock::numberBlocksAtRow(int row)
+{
+    if (angle == 0)
+    {
+        if (row == 0)
+        {
+            return 3;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if (angle == 90 || angle == 270)
+    {
+        if (row == 0 || row == 2)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    else if (angle == 180)
+    {
+        if (row == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+}
+
 QRectF TBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
