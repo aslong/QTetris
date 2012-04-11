@@ -18,6 +18,37 @@ ZBlock::ZBlock(QPointF point)
 {
 }
 
+int ZBlock::numberRowsOfBlocks()
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 2;
+    }
+    else
+    {
+        return 3;
+    }
+}
+
+int ZBlock::numberBlocksAtRow(int row)
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 2;
+    }
+    else
+    {
+        if (row == 0 || row == 2)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+}
+
 QRectF ZBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
