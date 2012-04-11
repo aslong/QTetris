@@ -4,9 +4,20 @@ const QColor Block::FILL_COLOR = Qt::red;
 
 Block::Block(const QPointF startPosition)
 {
+    init(startPosition, FILL_COLOR);
+}
+
+Block::Block(const QPointF startPosition, QColor newFillColor)
+{
+    init(startPosition, newFillColor);
+}
+
+void Block::init(const QPointF startPosition, QColor newFillColor)
+{
     setPos(startPosition);
     angle = 0;
     rotateBlock = false;
+    fillColor = newFillColor;
 }
 
 int Block::numberRowsOfBlocks()
@@ -24,6 +35,13 @@ int Block::numberBlocksAtRow(int row)
     return 0;
 }
 
+QList<Block *> Block::getBlocksAtRow(int row)
+{
+    QList<Block *> rowOfBlocks;
+    rowOfBlocks << this;
+    return rowOfBlocks;
+}
+
 QRectF Block::boundingRect() const
 {
     return QRectF(x() + 1, y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
@@ -34,7 +52,7 @@ void Block::paint(QPainter *painter,
                 QWidget *widget)
 {
     painter->drawRect(x(),y(), BLOCK_SIZE, BLOCK_SIZE);
-    painter->fillRect(x() + 1,y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, FILL_COLOR);
+    painter->fillRect(x() + 1,y() + 1, BLOCK_SIZE - 1, BLOCK_SIZE - 1, fillColor);
     
 }
 

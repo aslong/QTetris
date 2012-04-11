@@ -52,14 +52,46 @@ void TetrisGrid::gameLoop(int step)
         {
             int rowPos = gameBorder->boundingRect().height() - currentBlock->mapToScene(currentBlock->boundingRect().bottomLeft()).y();
             int row = (int)(rowPos / Block::BLOCK_SIZE);
+            QList<int> rowsToRemove;
             for (int i = 0; i < currentBlock->numberRowsOfBlocks(); i++)
             {
+                QList<Block *> rowOfBlocks = currentBlock->getBlocksAtRow(i);
                 for (int j = 0; j < currentBlock->numberBlocksAtRow(i); j++)
                 {
-                    int filledRow = gridRows->addBlock(row + i);
+                    gameScene->addItem(rowOfBlocks[j]);
+                    int filledRow = gridRows->addBlock(row + i, rowOfBlocks[j]);
+                    if (filledRow)
+                    {
+                        rowsToRemove.append(row + i);
+                    }
+
                     std::cout << "Row pos " << row + i << "x" << j << " -  row filled: " << filledRow << "\n";
                 }
             }
+
+            for (int i = rowsToRemove.count() - 1; i >= 0; i--)
+            {
+                QLinkedList<Block *> * blocksToRemove = gridRows->getRowOfBlocks(rowsToRemove[i]);
+                QLinkedList<Block *>::iterator iter;
+                for (iter = blocksToRemove->begin(); iter != blocksToRemove->end(); iter++)
+                {
+                    gameScene->removeItem(*iter);
+                }
+
+                for (int shiftIndex = gridRows->numberRowsTracked() - 1; shiftIndex > i; shiftIndex--)
+                {
+                    QLinkedList<Block *> *blocksToShift = gridRows->getRowOfBlocks(shiftIndex);
+                    QLinkedList<Block *>::iterator shiftIter;
+                    for (shiftIter = blocksToShift->begin(); shiftIter != blocksToShift->end(); shiftIter++)
+                    {
+                        (*shiftIter)->moveDown(Block::BLOCK_SIZE / 2);
+                    }
+                } 
+
+                gridRows->removeRow(rowsToRemove[i]);
+            }
+
+            gameScene->removeItem(currentBlock);
 
             dropNewBlock();
         }

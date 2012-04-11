@@ -32,6 +32,25 @@ int LineBlock::numberBlocksAtRow(int row)
     }
 }
 
+QList<Block *> LineBlock::getBlocksAtRow(int row)
+{
+    QList<Block *> rowOfBlocks;
+
+    if (angle == 0 || angle == 180)
+    {
+        rowOfBlocks << new Block(QPointF(x(), y()), FILL_COLOR);
+        rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y()), FILL_COLOR);
+        rowOfBlocks << new Block(QPointF(x() + ((BLOCK_SIZE/2) * 2), y()), FILL_COLOR);
+        rowOfBlocks << new Block(QPointF(x() + ((BLOCK_SIZE/2) * 3), y()), FILL_COLOR);
+    }
+    else
+    {
+        rowOfBlocks << new Block(QPointF(x(), y() + ((BLOCK_SIZE/2) * (3 - row))), FILL_COLOR);
+    }
+
+    return rowOfBlocks;
+}
+
 QRectF LineBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270) 
