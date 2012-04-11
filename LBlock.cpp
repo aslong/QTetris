@@ -19,6 +19,66 @@ LBlock::LBlock(QPointF point)
 {
 }
 
+int LBlock::numberRowsOfBlocks()
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 2;
+    }
+    else
+    {
+        return 3;
+    }
+}
+
+int LBlock::numberBlocksAtRow(int row)
+{
+    if (angle == 0)
+    {
+        if (row == 0)
+        {
+            return 3;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if (angle == 90)
+    {
+        if (row == 0)
+        {
+            return  2;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else if (angle == 180)
+    {
+        if (row == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+    else
+    {
+        if (row == 0 || row == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+}
+
 QRectF LBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
