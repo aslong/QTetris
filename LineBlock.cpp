@@ -8,6 +8,30 @@ LineBlock::LineBlock(QPointF point)
     
 }
 
+int LineBlock::numberRowsOfBlocks()
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 1;
+    }
+    else
+    {
+        return 4;
+    }
+}
+
+int LineBlock::numberBlocksAtRow(int row)
+{
+    if (angle == 0 || angle == 180)
+    {
+        return 4;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 QRectF LineBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270) 

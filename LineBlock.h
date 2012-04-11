@@ -9,6 +9,8 @@ class LineBlock : public Block
         LineBlock(QPointF point);
         QRectF boundingRect() const;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        int numberRowsOfBlocks();
+        int numberBlocksAtRow(int row);
     private:
         static const int BLOCK_WIDTH = (BLOCK_SIZE * 4);
         static const int BLOCK_HEIGHT = BLOCK_SIZE;  
