@@ -15,8 +15,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
-    return new LineBlock(point);
-    int random = rand() % 7; 
+    int random = rand() % 2;//7; 
 
     switch (random)
     {
