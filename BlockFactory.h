@@ -11,6 +11,6 @@ class BlockFactory : public QObject
         BlockFactory();
         Block * nextShape(QPointF point);
     private:
-        enum BlockTypes { LINE, LSHAPED, JSHAPED, TSHAPED, SQUARESHAPED, SSHAPED, ZSHAPED };
+        enum BlockTypes { LINE, LSHAPED, SQUARESHAPED, JSHAPED, TSHAPED, SSHAPED, ZSHAPED };
 };
 #endif

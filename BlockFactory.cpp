@@ -15,7 +15,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
-    int random = rand() % 2;//7; 
+    int random = rand() % 3;//7; 
 
     switch (random)
     {
@@ -23,12 +23,12 @@ Block * BlockFactory::nextShape(QPointF point)
            return new LineBlock(point); 
         case LSHAPED:
            return new LBlock(point);
+        case SQUARESHAPED:
+           return new SquareBlock(point);
         case JSHAPED:
            return new JBlock(point);
         case TSHAPED:
            return new TBlock(point);
-        case SQUARESHAPED:
-           return new SquareBlock(point);
         case SSHAPED:
            return new SBlock(point);
         case ZSHAPED:
