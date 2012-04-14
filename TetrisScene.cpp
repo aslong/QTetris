@@ -30,4 +30,8 @@ void TetrisScene::keyPressEvent(QKeyEvent *keyEvent)
         gameGrid->rotationKeyPressed();
     }
 
+    if (keyEvent->key() == Qt::Key_D)
+    {
+        gameGrid->dropKeyPressed();
+    }
 }

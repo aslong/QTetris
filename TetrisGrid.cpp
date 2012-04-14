@@ -41,7 +41,7 @@ void TetrisGrid::setupGameLoop()
 void TetrisGrid::gameLoop(int step)
 {
     currentBlock->moveDown(1);
-    if (!this->blockWithinGameBorder(currentBlock)) 
+    if (!this->blockNotColliding(currentBlock)) 
     {
         currentBlock->moveUp(1);
         if (currentBlock->collidesWithItem(maxHeightBorder, Qt::IntersectsItemShape))
@@ -124,7 +124,7 @@ QRectF TetrisGrid::boundingRect() const
     return gameBorder->boundingRect();
 }
 
-bool TetrisGrid::blockWithinGameBorder(Block *block) 
+bool TetrisGrid::blockNotColliding(Block *block) 
 {
     QList<QGraphicsItem *> items = gameScene->collidingItems(currentBlock);
     QList<QGraphicsItem *>::iterator iter;
@@ -143,7 +143,7 @@ void TetrisGrid::leftKeyPressed()
 {
     std::cout << "Left Press from grid\n";
     currentBlock->moveLeft(HORIZONTAL_BLOCK_GRID_SIZE);
-    if (!blockWithinGameBorder(currentBlock))
+    if (!blockNotColliding(currentBlock))
     {
         currentBlock->moveRight(HORIZONTAL_BLOCK_GRID_SIZE);
     }
@@ -153,7 +153,7 @@ void TetrisGrid::rightKeyPressed()
 {
     std::cout << "Right Press from grid\n";
     currentBlock->moveRight(HORIZONTAL_BLOCK_GRID_SIZE);
-    if (!blockWithinGameBorder(currentBlock))
+    if (!blockNotColliding(currentBlock))
     {
         currentBlock->moveLeft(HORIZONTAL_BLOCK_GRID_SIZE);
     }
@@ -163,7 +163,7 @@ void TetrisGrid::downKeyPressed()
 {
     std::cout << "Down Press from grid\n";
     currentBlock->moveDown(VERTICAL_BLOCK_GRID_SIZE);
-    if (!blockWithinGameBorder(currentBlock))
+    if (!blockNotColliding(currentBlock))
     {
         currentBlock->moveUp(VERTICAL_BLOCK_GRID_SIZE);
     }
@@ -174,8 +174,18 @@ void TetrisGrid::rotationKeyPressed()
 {
     std::cout << "Rotation Press from grid\n";
     currentBlock->rotate();
-    if (!blockWithinGameBorder(currentBlock))
+    if (!blockNotColliding(currentBlock))
     {
         currentBlock->rotate();
     }
+}
+
+void TetrisGrid::dropKeyPressed()
+{
+    std::cout << "Pressed drop from grid\n";
+    while(blockNotColliding(currentBlock))
+    {
+        currentBlock->moveDown(VERTICAL_BLOCK_GRID_SIZE);
+    }
+    currentBlock->moveUp(VERTICAL_BLOCK_GRID_SIZE);
 }

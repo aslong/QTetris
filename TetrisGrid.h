@@ -19,6 +19,7 @@ class TetrisGrid : public QObject
         void rightKeyPressed();
         void downKeyPressed();
         void rotationKeyPressed();
+        void dropKeyPressed();
     public slots:
         void gameLoop(int step);
         void restartTimer();
@@ -32,7 +33,7 @@ class TetrisGrid : public QObject
         QTimeLine *dropBlockTimer;
         BlockFactory *blockFactory;
         Block *currentBlock;
-        bool blockWithinGameBorder(Block *block);
+        bool blockNotColliding(Block *block);
         void dropNewBlock();
         void setupGameLoop();
         static const int HORIZONTAL_BLOCK_GRID_SIZE = (Block::BLOCK_SIZE / 2);
