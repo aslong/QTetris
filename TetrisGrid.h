@@ -33,8 +33,10 @@ class TetrisGrid : public QObject
         QTimeLine *dropBlockTimer;
         BlockFactory *blockFactory;
         Block *currentBlock;
+        Block *nextBlock;
         bool blockNotColliding(Block *block);
         void dropNewBlock();
+        void updateNextBlock();
         void setupGameLoop();
         static const int HORIZONTAL_BLOCK_GRID_SIZE = (Block::BLOCK_SIZE / 2);
         static const int VERTICAL_BLOCK_GRID_SIZE = (Block::BLOCK_SIZE / 2);

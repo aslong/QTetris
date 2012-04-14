@@ -117,6 +117,14 @@ void TetrisGrid::dropNewBlock()
     int multiplier = rand() % horizontalSpaces;
     currentBlock = blockFactory->nextShape(QPointF(1,1));
     gameScene->addItem(currentBlock);
+    updateNextBlock();
+}
+
+void TetrisGrid::updateNextBlock()
+{
+    nextBlock = blockFactory->peekNextShape();
+
+    gameScene->addItem(nextBlock);
 }
 
 QRectF TetrisGrid::boundingRect() const
@@ -130,7 +138,7 @@ bool TetrisGrid::blockNotColliding(Block *block)
     QList<QGraphicsItem *>::iterator iter;
     for (iter = items.begin(); iter != items.end(); iter++)
     {
-        if ((*iter) != gameBorder && (*iter) != maxHeightBorder) 
+        if ((*iter) != gameBorder && (*iter) != maxHeightBorder && (*iter) != nextBlock) 
         {
             return false;
         }
