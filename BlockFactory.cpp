@@ -15,7 +15,7 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
-    int random = rand() % 3;//7; 
+    int random = rand() % 7; 
 
     switch (random)
     {
