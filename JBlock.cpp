@@ -82,6 +82,72 @@ int JBlock::numberBlocksAtRow(int row)
     return 0;
 }
 
+QList<Block *> JBlock::getBlocksAtRow(int row)
+{
+    QList<Block *> rowOfBlocks;
+
+    if (angle == 0)
+    {
+        if (row == 0)
+        {
+            rowOfBlocks << new Block(QPointF(x(), y() + BLOCK_SIZE / 2), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y() + BLOCK_SIZE / 2), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + ((BLOCK_SIZE / 2) * 2), y() + BLOCK_SIZE / 2), FILL_COLOR);
+        }
+        else
+        {
+            rowOfBlocks << new Block(QPointF(x(), y()), FILL_COLOR);
+        }
+    }
+    else if (angle == 90)
+    {
+        if (row == 0)
+        {
+            rowOfBlocks << new Block(QPointF(x(), y() + ((BLOCK_SIZE / 2) * 2)), FILL_COLOR);
+        }
+        else if (row == 1)
+        {
+            rowOfBlocks << new Block(QPointF(x(), y() + BLOCK_SIZE / 2), FILL_COLOR);
+        }
+        else
+        {
+            rowOfBlocks << new Block(QPointF(x(), y()), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y()), FILL_COLOR);
+        }
+    }
+    else if (angle == 180)
+    {
+        if (row == 0)
+        {
+            rowOfBlocks << new Block(QPointF(x() + ((BLOCK_SIZE / 2) * 2), y() + BLOCK_SIZE / 2), FILL_COLOR);
+        }
+        else
+        {
+            rowOfBlocks << new Block(QPointF(x(), y()), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y()), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + ((BLOCK_SIZE / 2) * 2), y()), FILL_COLOR);
+        }
+    }
+    else
+    {
+        if (row == 0)
+        {
+            rowOfBlocks << new Block(QPointF(x(), y() + ((BLOCK_SIZE / 2) * 2)), FILL_COLOR);
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y() + ((BLOCK_SIZE / 2) * 2)), FILL_COLOR);
+        }
+        else if (row == 1)
+        {
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y() + BLOCK_SIZE / 2), FILL_COLOR);
+        }
+        else
+        {
+            rowOfBlocks << new Block(QPointF(x() + BLOCK_SIZE / 2, y()), FILL_COLOR);
+        }
+    }
+
+    return rowOfBlocks;
+}
+
 QRectF JBlock::boundingRect() const
 {
     if (angle == 90 || angle == 270)
