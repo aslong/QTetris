@@ -3,6 +3,7 @@
 #include "GameBorder.h"
 #include "BlockFactory.h"
 #include "GridRows.h"
+#include "TetrisScoreKeeper.h"
 
 #ifndef TETRIS_GRID
 #define TETRIS_GRID
@@ -12,7 +13,6 @@ class TetrisGrid : public QObject
 
     public:
         TetrisGrid(QGraphicsScene *scene);
-        GridRows *gridRows;
         QRectF boundingRect() const;
         void play();
         void leftKeyPressed();
@@ -25,6 +25,8 @@ class TetrisGrid : public QObject
     private:
         QGraphicsScene *gameScene;
         GameBorder *gameBorder;
+        TetrisScoreKeeper *scoreKeeper;
+        GridRows *gridRows;
         QGraphicsLineItem *maxHeightBorder;
         QTimeLine *timer;
         QTimeLine *dropBlockTimer;

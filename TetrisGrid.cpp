@@ -16,6 +16,7 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene)
     gameScene->addItem(gameBorder);
     maxHeightBorder = gameScene->addLine(0, 300, gameBorder->boundingRect().width(), 300);
     blockFactory = new BlockFactory();
+    scoreKeeper = &TetrisScoreKeeper::getInstance();
     gridRows = new GridRows(gameBorder->boundingRect().width() / Block::BLOCK_SIZE);
 }
 
@@ -46,6 +47,7 @@ void TetrisGrid::gameLoop(int step)
         if (currentBlock->collidesWithItem(maxHeightBorder, Qt::IntersectsItemShape))
         {
             std::cout << "Game Over!\n";
+            std::cout << "Total Score: " << scoreKeeper->getCurrentScore() << "\n";
             timer->setPaused(true);
         }
         else
@@ -68,6 +70,10 @@ void TetrisGrid::gameLoop(int step)
                     std::cout << "Row pos " << row + i << "x" << j << " -  row filled: " << filledRow << "\n";
                 }
             }
+
+            scoreKeeper->scoreRows(rowsToRemove.count());
+            std::cout << "Removed " << rowsToRemove.count() << " rows\n";
+            std::cout << "Current Score: " << scoreKeeper->getCurrentScore() << "\n";
 
             for (int i = rowsToRemove.count() - 1; i >= 0; i--)
             {
