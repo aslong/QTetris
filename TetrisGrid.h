@@ -20,6 +20,7 @@ class TetrisGrid : public QObject
         void downKeyPressed();
         void rotationKeyPressed();
         void dropKeyPressed();
+        void pauseKeyPressed();
     public slots:
         void gameLoop(int step);
         void restartTimer();

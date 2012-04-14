@@ -10,28 +10,25 @@ void TetrisScene::keyPressEvent(QKeyEvent *keyEvent)
 {
 //    std::cout << "Pressing key " << keyEvent->key() << "\n";
 
-    if (keyEvent->key() == Qt::Key_Left)
+    switch(keyEvent->key())
     {
-        gameGrid->leftKeyPressed();
-    }
-
-    if (keyEvent->key() == Qt::Key_Right)
-    {
-        gameGrid->rightKeyPressed();
-    }
-
-    if (keyEvent->key() == Qt::Key_Down)
-    {
-        gameGrid->downKeyPressed();
-    }
-
-    if (keyEvent->key() == Qt::Key_R)
-    {
-        gameGrid->rotationKeyPressed();
-    }
-
-    if (keyEvent->key() == Qt::Key_D)
-    {
-        gameGrid->dropKeyPressed();
+        case Qt::Key_Left:
+            gameGrid->leftKeyPressed();
+            break;
+        case Qt::Key_Right:
+            gameGrid->rightKeyPressed();
+            break;
+        case Qt::Key_Down:
+            gameGrid->downKeyPressed();
+            break;
+        case Qt::Key_R:
+            gameGrid->rotationKeyPressed();
+            break;
+        case Qt::Key_D:
+            gameGrid->dropKeyPressed();
+            break;
+        case Qt::Key_P:
+            gameGrid->pauseKeyPressed();
+            break;
     }
 }

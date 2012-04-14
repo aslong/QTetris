@@ -197,3 +197,19 @@ void TetrisGrid::dropKeyPressed()
     }
     currentBlock->moveUp(VERTICAL_BLOCK_GRID_SIZE);
 }
+
+void TetrisGrid::pauseKeyPressed()
+{
+    if (timer->state() == QTimeLine::Running)
+    {
+        std::cout << "Pausing game from grid\n";
+        timer->setPaused(true);
+        std::cout << "Paused\n";
+    }
+    else
+    {
+        std::cout << "Resuming game from grid\n";
+        timer->setPaused(false);
+        std::cout << "Resumed\n";
+    }
+}
