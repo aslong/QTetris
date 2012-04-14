@@ -16,6 +16,20 @@ BlockFactory::BlockFactory()
 
 Block * BlockFactory::nextShape(QPointF point)
 {
+    Block *blockToReturn;
+    if (!nextBlock)
+    {
+         nextBlock = generateNextShape(point);
+    }
+
+    blockToReturn = nextBlock;
+    nextBlock = generateNextShape(point);
+
+    return blockToReturn;
+}
+
+Block * BlockFactory::generateNextShape(QPointF point)
+{
     int random = rand() % 7; 
 
     if (previousShapes->count() > 1)
@@ -54,5 +68,19 @@ Block * BlockFactory::nextShape(QPointF point)
            return new ZBlock(point);
         default:
            return new Block(point);
+    }
+}
+
+Block * BlockFactory::peekNextShape()
+{
+    return nextBlock;
+}
+
+BlockFactory::~BlockFactory()
+{
+    delete previousShapes;
+    if (nextBlock)
+    {
+        delete nextBlock;
     }
 }

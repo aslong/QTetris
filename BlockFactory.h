@@ -10,8 +10,12 @@ class BlockFactory : public QObject
     public:
         BlockFactory();
         Block * nextShape(QPointF point);
+        Block * peekNextShape();
+        ~BlockFactory();
     private:
         enum BlockTypes { LINE, LSHAPED, SQUARESHAPED, JSHAPED, TSHAPED, SSHAPED, ZSHAPED };
+        Block * generateNextShape(QPointF point);
         QQueue<int> *previousShapes;
+        Block *nextBlock;
 };
 #endif
