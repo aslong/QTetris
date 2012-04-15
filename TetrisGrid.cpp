@@ -4,17 +4,18 @@
 #include "LineBlock.h"
 #include "LBlock.h"
 
-TetrisGrid::TetrisGrid(QGraphicsScene *scene)
+TetrisGrid::TetrisGrid(QGraphicsScene *scene, QPointF newOrigin)
 {
     gameScene = scene;
+    origin = newOrigin;
     QPen pen;
     pen.setWidth(1);
     pen.setBrush(Qt::blue);
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
-    gameBorder = new GameBorder();
+    gameBorder = new GameBorder(origin);
     gameScene->addItem(gameBorder);
-    maxHeightBorder = gameScene->addLine(0, 300, gameBorder->boundingRect().width(), 300);
+    maxHeightBorder = gameScene->addLine(origin.x(), 300, origin.x() + gameBorder->boundingRect().width(), 300);
     blockFactory = new BlockFactory();
     scoreKeeper = &TetrisScoreKeeper::getInstance();
     gridRows = new GridRows(gameBorder->boundingRect().width() / Block::BLOCK_SIZE);
@@ -115,7 +116,7 @@ void TetrisGrid::dropNewBlock()
     //currentBlock = new LBlock(QPointF((rand() % 150), 6));
     int horizontalSpaces = boundingRect().width() / HORIZONTAL_BLOCK_GRID_SIZE;
     int multiplier = rand() % horizontalSpaces;
-    currentBlock = blockFactory->nextShape(QPointF(1,1));
+    currentBlock = blockFactory->nextShape(QPointF(origin.x() + 1, origin.y() + 1));
     gameScene->addItem(currentBlock);
     updateNextBlock();
 }

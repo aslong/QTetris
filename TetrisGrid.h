@@ -12,7 +12,7 @@ class TetrisGrid : public QObject
     Q_OBJECT
 
     public:
-        TetrisGrid(QGraphicsScene *scene);
+        TetrisGrid(QGraphicsScene *scene, QPointF newOrigin);
         QRectF boundingRect() const;
         void play();
         void leftKeyPressed();
@@ -25,6 +25,7 @@ class TetrisGrid : public QObject
         void gameLoop(int step);
         void restartTimer();
     private:
+        QPointF origin;
         QGraphicsScene *gameScene;
         GameBorder *gameBorder;
         TetrisScoreKeeper *scoreKeeper;
