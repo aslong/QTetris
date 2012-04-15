@@ -1,5 +1,6 @@
 #include "BlockFactory.h"
 #include <stdlib.h>
+#include <time.h>
 #include "Block.h"
 #include "LineBlock.h"
 #include "LBlock.h"
@@ -30,6 +31,7 @@ Block * BlockFactory::nextShape(QPointF point)
 
 Block * BlockFactory::generateNextShape(QPointF point)
 {
+    srand(time(NULL));
     int random = rand() % 7; 
 
     if (previousShapes->count() > 1)
