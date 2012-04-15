@@ -11,6 +11,8 @@ QTetrisWindow::QTetrisWindow()
     gameGrid = new TetrisGrid(graphicsScene, QPointF(200, 0));
     graphicsScene->setGameGrid(gameGrid);
 
+    statsView = new GameStatsView(graphicsScene, QPointF(0, 0));
+
     graphicsView = new QGraphicsView(graphicsScene);
     graphicsView->setSceneRect(QRectF(0, 0, 505, 480));
     graphicsView->setAlignment(Qt::AlignRight | Qt::AlignTop);

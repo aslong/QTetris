@@ -74,7 +74,6 @@ void TetrisGrid::gameLoop(int step)
 
             scoreKeeper->scoreRows(rowsToRemove.count());
             std::cout << "Removed " << rowsToRemove.count() << " rows\n";
-            std::cout << "Current Score: " << scoreKeeper->getCurrentScore() << "\n";
 
             for (int i = rowsToRemove.count() - 1; i >= 0; i--)
             {

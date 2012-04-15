@@ -1,6 +1,7 @@
 #include <QtGui>
 #include "TetrisScene.h"
 #include "TetrisGrid.h"
+#include "GameStatsView.h"
 
 class QTetrisWindow : public QMainWindow
 {
@@ -17,4 +18,5 @@ class QTetrisWindow : public QMainWindow
         TetrisScene *graphicsScene;
         QGraphicsView *graphicsView;
         TetrisGrid *gameGrid;
+        GameStatsView *statsView;
 };

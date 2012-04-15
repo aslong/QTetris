@@ -12,6 +12,7 @@ CONFIG += debug
 HEADERS = TetrisGrid.h \
           GridRows.h \
           TetrisScene.h \
+          GameStatsView.h \
           QTetrisWindow.h \
           TetrisScoreKeeper.h \
           Block.h \
@@ -27,6 +28,7 @@ HEADERS = TetrisGrid.h \
 SOURCES = TetrisGrid.cpp \
           GridRows.cpp \
           TetrisScene.cpp \
+          GameStatsView.cpp \
           QTetrisWindow.cpp \
           TetrisScoreKeeper.cpp \
           Block.cpp \ 
