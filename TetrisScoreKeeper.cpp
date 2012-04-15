@@ -9,6 +9,7 @@ TetrisScoreKeeper::TetrisScoreKeeper()
 void TetrisScoreKeeper::addPoints(int points)
 {
     currentScore += points;
+    emit scoreChanged(currentScore);
 }
 
 void TetrisScoreKeeper::scoreRows(int rows)
