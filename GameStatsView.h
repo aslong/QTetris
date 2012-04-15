@@ -1,4 +1,5 @@
 #include <QObject>
+#include <QtGui>
 #include "TetrisScene.h"
 #include "TetrisScoreKeeper.h"
 
@@ -16,5 +17,6 @@ class GameStatsView : public QObject
         TetrisScene *gameScene;
         TetrisScoreKeeper *scoreKeeper;
         QPointF origin;
+        QGraphicsSimpleTextItem *scoreText;
 };
 #endif
