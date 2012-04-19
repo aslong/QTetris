@@ -1,0 +1,5 @@
+tetris: add pretty background for game stats view | id:2e62e87ab39a384c114c4ba4281fe3ccb65d8637
+tetris: add prettified blocks | id:760ab3c4fa10e919f8353b3f74757a3fec0f61cd
+tetris: add pretty background for tetris grid | id:bec31568d2c67c46e0a3f307caf3a3c19e894bb7
+tetris:add levels based on score value | id:bf31383cdeca180080b4b6a11314ef31b1a3f517
+tetris: add next block ui | id:ff79b41024c8f140794d877e366ef124cf0bdbc8
