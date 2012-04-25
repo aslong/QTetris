@@ -1,6 +1,5 @@
 #include "TetrisGrid.h"
 #include <stdlib.h>
-#include <iostream>
 #include "LineBlock.h"
 #include "LBlock.h"
 
@@ -23,8 +22,10 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene, QPointF newOrigin)
 
 void TetrisGrid::play()
 {
+    qDebug() << "Drop first block";
     dropNewBlock();
-
+    qDebug() << "Finished Drop first block";
+    qDebug() << "Starting game loop";
     setupGameLoop();
 }
 
@@ -47,8 +48,8 @@ void TetrisGrid::gameLoop(int step)
         currentBlock->moveUp(1);
         if (currentBlock->collidesWithItem(maxHeightBorder, Qt::IntersectsItemShape))
         {
-            std::cout << "Game Over!\n";
-            std::cout << "Total Score: " << scoreKeeper->getCurrentScore() << "\n";
+            qDebug() << "Game Over!";
+            qDebug() << "Total Score: " << scoreKeeper->getCurrentScore();
             timer->setPaused(true);
         }
         else
@@ -68,12 +69,12 @@ void TetrisGrid::gameLoop(int step)
                         rowsToRemove.append(row + i);
                     }
 
-                    std::cout << "Row pos " << row + i << "x" << j << " -  row filled: " << filledRow << "\n";
+                    qDebug() << "Row pos " << row + i << "x" << j << " -  row filled: " << filledRow;
                 }
             }
 
             scoreKeeper->scoreRows(rowsToRemove.count());
-            std::cout << "Removed " << rowsToRemove.count() << " rows\n";
+            qDebug() << "Removed " << rowsToRemove.count() << " rows";
 
             for (int i = rowsToRemove.count() - 1; i >= 0; i--)
             {
@@ -149,7 +150,7 @@ bool TetrisGrid::blockNotColliding(Block *block)
 
 void TetrisGrid::leftKeyPressed()
 {
-    std::cout << "Left Press from grid\n";
+    qDebug() << "Left Press from grid";
     currentBlock->moveLeft(HORIZONTAL_BLOCK_GRID_SIZE);
     if (!blockNotColliding(currentBlock))
     {
@@ -159,7 +160,7 @@ void TetrisGrid::leftKeyPressed()
 
 void TetrisGrid::rightKeyPressed()
 {
-    std::cout << "Right Press from grid\n";
+    qDebug() << "Right Press from grid";
     currentBlock->moveRight(HORIZONTAL_BLOCK_GRID_SIZE);
     if (!blockNotColliding(currentBlock))
     {
@@ -169,7 +170,7 @@ void TetrisGrid::rightKeyPressed()
 
 void TetrisGrid::downKeyPressed()
 {
-    std::cout << "Down Press from grid\n";
+    qDebug() << "Down Press from grid";
     currentBlock->moveDown(VERTICAL_BLOCK_GRID_SIZE);
     if (!blockNotColliding(currentBlock))
     {
@@ -180,7 +181,7 @@ void TetrisGrid::downKeyPressed()
 
 void TetrisGrid::rotationKeyPressed()
 {
-    std::cout << "Rotation Press from grid\n";
+    qDebug() << "Rotation Press from grid";
     currentBlock->rotate();
     if (!blockNotColliding(currentBlock))
     {
@@ -190,7 +191,7 @@ void TetrisGrid::rotationKeyPressed()
 
 void TetrisGrid::dropKeyPressed()
 {
-    std::cout << "Pressed drop from grid\n";
+    qDebug() << "Pressed drop from grid";
     while(blockNotColliding(currentBlock))
     {
         currentBlock->moveDown(VERTICAL_BLOCK_GRID_SIZE);
@@ -202,14 +203,14 @@ void TetrisGrid::pauseKeyPressed()
 {
     if (timer->state() == QTimeLine::Running)
     {
-        std::cout << "Pausing game from grid\n";
+        qDebug() << "Pausing game from grid";
         timer->setPaused(true);
-        std::cout << "Paused\n";
+        qDebug() << "Paused";
     }
     else
     {
-        std::cout << "Resuming game from grid\n";
+        qDebug() << "Resuming game from grid";
         timer->setPaused(false);
-        std::cout << "Resumed\n";
+        qDebug() << "Resumed";
     }
 }
