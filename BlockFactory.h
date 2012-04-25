@@ -8,14 +8,24 @@ class BlockFactory : public QObject
     Q_OBJECT
     
     public:
-        BlockFactory();
+        static BlockFactory& getInstance()
+        {
+            static BlockFactory instance;
+
+            return instance;
+        }
         Block * nextShape(QPointF point);
         Block * peekNextShape();
         ~BlockFactory();
+    signals:
+        void nextBlockChanged(Block *nextBlock);
     private:
         enum BlockTypes { LINE, LSHAPED, SQUARESHAPED, JSHAPED, TSHAPED, SSHAPED, ZSHAPED };
         Block * generateNextShape(QPointF point);
         QQueue<int> *previousShapes;
         Block *nextBlock;
+        BlockFactory();
+        BlockFactory(BlockFactory const&);
+        void operator=(BlockFactory const&);
 };
 #endif

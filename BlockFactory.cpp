@@ -26,6 +26,7 @@ Block * BlockFactory::nextShape(QPointF point)
 
     blockToReturn = nextBlock;
     nextBlock = generateNextShape(point);
+    emit nextBlockChanged(nextBlock);
 
     return blockToReturn;
 }
