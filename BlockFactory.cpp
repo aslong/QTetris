@@ -13,6 +13,7 @@
 BlockFactory::BlockFactory()
 {
     previousShapes = new QQueue<int>(); 
+    nextBlock = NULL;
 }
 
 Block * BlockFactory::nextShape(QPointF point)
