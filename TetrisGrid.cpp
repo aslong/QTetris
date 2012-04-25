@@ -116,16 +116,9 @@ void TetrisGrid::dropNewBlock()
     //currentBlock = new LBlock(QPointF((rand() % 150), 6));
     int horizontalSpaces = boundingRect().width() / HORIZONTAL_BLOCK_GRID_SIZE;
     int multiplier = rand() % horizontalSpaces;
-    currentBlock = blockFactory->nextShape(QPointF(origin.x() + 1, origin.y() + 1));
+    currentBlock = blockFactory->nextShape();
+    currentBlock->setPos(origin.x() + 1, origin.y() + 1);
     gameScene->addItem(currentBlock);
-    updateNextBlock();
-}
-
-void TetrisGrid::updateNextBlock()
-{
-    nextBlock = blockFactory->peekNextShape();
-
-    gameScene->addItem(nextBlock);
 }
 
 QRectF TetrisGrid::boundingRect() const
@@ -139,7 +132,7 @@ bool TetrisGrid::blockNotColliding(Block *block)
     QList<QGraphicsItem *>::iterator iter;
     for (iter = items.begin(); iter != items.end(); iter++)
     {
-        if ((*iter) != gameBorder && (*iter) != maxHeightBorder && (*iter) != nextBlock) 
+        if ((*iter) != gameBorder && (*iter) != maxHeightBorder) 
         {
             return false;
         }
@@ -176,7 +169,6 @@ void TetrisGrid::downKeyPressed()
     {
         currentBlock->moveUp(VERTICAL_BLOCK_GRID_SIZE);
     }
-
 }
 
 void TetrisGrid::rotationKeyPressed()
