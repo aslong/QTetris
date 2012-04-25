@@ -1,5 +1,4 @@
 #include "GameStatsView.h"
-#include <iostream>
 
 GameStatsView::GameStatsView(TetrisScene *newGameScene, QPointF newOrigin)
 {
@@ -11,19 +10,33 @@ GameStatsView::GameStatsView(TetrisScene *newGameScene, QPointF newOrigin)
     QObject::connect(blockFactory, SIGNAL(nextBlockChanged(Block *)), this, SLOT(updateNextBlock(Block *)));
     scoreText = new QGraphicsSimpleTextItem();
     scoreText->setPos(origin.x() + 10, origin.y() + 10);
-    scoreText->setText("Score: 0");
+    scoreText->setText("Score\n0");
     gameScene->addItem(scoreText);
+
+    QGraphicsSimpleTextItem *nextBlockText = new QGraphicsSimpleTextItem();
+    nextBlockText->setPos(origin.x() + 10, origin.y() + 65);
+    nextBlockText->setText("Next Block");
+    gameScene->addItem(nextBlockText);
+
+    nextBlock = NULL;
 }
 
 void GameStatsView::updateScore(int newScore)
 {
     QString result;
-    QTextStream(&result) << "Score: " << newScore;
+    QTextStream(&result) << "Score\n" << newScore;
     scoreText->setText(result);
     scoreText->update();
 }
 
-void GameStatsView::updateNextBlock(Block *nextBlock)
+void GameStatsView::updateNextBlock(Block *newNextBlock)
 {
-    qDebug() << "Next block updated from stats view: " << nextBlock;
+    if (nextBlock)
+    {
+        gameScene->removeItem(nextBlock);
+    }
+
+    newNextBlock->setPos(origin.x() + 5, origin.y() + 45);
+    gameScene->addItem(newNextBlock);
+    nextBlock = newNextBlock;
 }

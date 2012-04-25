@@ -21,5 +21,6 @@ class GameStatsView : public QObject
         BlockFactory *blockFactory;
         QPointF origin;
         QGraphicsSimpleTextItem *scoreText;
+        Block *nextBlock;
 };
 #endif
