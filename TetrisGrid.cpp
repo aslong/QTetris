@@ -15,7 +15,7 @@ TetrisGrid::TetrisGrid(QGraphicsScene *scene, QPointF newOrigin)
     gameBorder = new GameBorder(origin);
     gameScene->addItem(gameBorder);
     maxHeightBorder = gameScene->addLine(origin.x(), 300, origin.x() + gameBorder->boundingRect().width(), 300);
-    blockFactory = new BlockFactory();
+    blockFactory = &BlockFactory::getInstance();
     scoreKeeper = &TetrisScoreKeeper::getInstance();
     gridRows = new GridRows(gameBorder->boundingRect().width() / Block::BLOCK_SIZE);
 }
