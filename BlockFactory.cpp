@@ -16,22 +16,22 @@ BlockFactory::BlockFactory()
     nextBlock = NULL;
 }
 
-Block * BlockFactory::nextShape(QPointF point)
+Block * BlockFactory::nextShape()
 {
     Block *blockToReturn;
     if (!nextBlock)
     {
-         nextBlock = generateNextShape(point);
+         nextBlock = generateNextShape();
     }
 
     blockToReturn = nextBlock;
-    nextBlock = generateNextShape(point);
+    nextBlock = generateNextShape();
     emit nextBlockChanged(nextBlock);
 
     return blockToReturn;
 }
 
-Block * BlockFactory::generateNextShape(QPointF point)
+Block * BlockFactory::generateNextShape()
 {
     srand(time(NULL));
     int random = rand() % 7; 
@@ -53,6 +53,10 @@ Block * BlockFactory::generateNextShape(QPointF point)
     }
 
     previousShapes->enqueue(random);
+
+    // Default to 0,0. Code manipulating block will set
+    // position to what is needed.
+    QPointF point = QPointF(0, 0);
 
     switch (random)
     {

@@ -14,14 +14,14 @@ class BlockFactory : public QObject
 
             return instance;
         }
-        Block * nextShape(QPointF point);
+        Block * nextShape();
         Block * peekNextShape();
         ~BlockFactory();
     signals:
         void nextBlockChanged(Block *nextBlock);
     private:
         enum BlockTypes { LINE, LSHAPED, SQUARESHAPED, JSHAPED, TSHAPED, SSHAPED, ZSHAPED };
-        Block * generateNextShape(QPointF point);
+        Block * generateNextShape();
         QQueue<int> *previousShapes;
         Block *nextBlock;
         BlockFactory();
